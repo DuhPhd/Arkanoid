@@ -1,0 +1,37 @@
+name death lazer
+number 2
+brick 100 500 3 1 1 brick_1.png
+brick 200 500 3 1 1 brick_1.png
+brick 300 500 3 1 1 brick_1.png
+brick 400 500 3 1 1 brick_1.png
+brick 500 500 3 1 1 brick_1.png
+brick 600 500 3 1 1 brick_1.png
+brick 700 500 3 1 1 brick_1.png
+brick 800 500 3 1 1 brick_1.png
+
+brick 100 400 3 1 1 brick_2.png
+brick 200 400 3 1 1 brick_2.png
+brick 300 400 3 1 1 brick_2.png
+brick 400 400 3 1 1 brick_2.png
+brick 500 400 3 1 1 brick_2.png
+brick 600 400 3 1 1 brick_2.png
+brick 700 400 3 1 1 brick_2.png
+brick 800 400 3 1 1 brick_2.png
+
+brick 100 300 3 1 1 brick_3.png
+brick 200 300 3 1 1 brick_3.png
+brick 300 300 3 1 1 brick_3.png
+brick 400 300 3 1 1 brick_3.png
+brick 500 300 3 1 1 brick_3.png
+brick 600 300 3 1 1 brick_3.png
+brick 700 300 3 1 1 brick_3.png
+brick 800 300 3 1 1 brick_3.png
+
+brick 100 200 3 1 1 brick_4.png
+brick 200 200 3 1 1 brick_4.png
+brick 300 200 3 1 1 brick_4.png
+brick 400 200 3 1 1 brick_4.png
+brick 500 200 3 1 1 brick_4.png
+brick 600 200 3 1 1 brick_4.png
+brick 700 200 3 1 1 brick_4.png
+brick 800 200 3 1 1 brick_4.png
