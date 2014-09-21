@@ -1,7 +1,6 @@
 name Classic
-number 1
-lives 3
-#background 
+number 4
+background desktop.jpg
 
 brick 100 500 1 1 1 brick_1.gif
 brick 200 500 1 1 1 brick_1.gif

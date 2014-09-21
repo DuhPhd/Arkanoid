@@ -22,6 +22,7 @@ class Paddle(pygame.sprite.Sprite):
         self.speedRight = (int(USER_SPEED / float(FRAMES_PER_SECOND)), 0)
         self.rect.midbottom = (self.area.centerx, self.area.bottom)
         self.moving = False # flag to indicate if user is currently moving paddle
+        self.paused = False # flag to indicate the paddle is paused
         self.direction = None # direction user is moving paddle\
         self.sin = sin
         self.cos = cos
@@ -37,6 +38,7 @@ class Paddle(pygame.sprite.Sprite):
     def update(self):
         """Move the user's paddle if key is being pressed"""
         
+        if self.paused: return
         if self.moving:
             newpos = self.rect
             
@@ -67,6 +69,13 @@ class Paddle(pygame.sprite.Sprite):
     def reset(self):
         """Resets the paddle to the initial position."""
         self.rect.midbottom = (self.area.centerx, self.area.bottom)
+        
+    
+    # ~~~~ pause() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+    def pause(self):
+        """Pauses the paddle to prevent moving or unpauses to allow it."""
+        if self.paused: self.paused = False
+        else: self.paused = True
         
         
     # ~~~~ ball_effect() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

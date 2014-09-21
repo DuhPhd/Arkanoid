@@ -11,9 +11,11 @@ def main():
         pygame, 
         KEYDOWN, 
         KEYUP, 
-        K_ESCAPE, 
+        K_ESCAPE,
+        K_SPACE,
         QUIT,
         K_r,
+        K_p,
         load_stages
     )
     from config import (
@@ -70,41 +72,78 @@ def main():
         name.value = '%i: %s' % (stage.number, stage.name)
         
         # draw the stage to prepare the round
+        life.change_by(stage.lives)
         stage.draw()
         pygame.draw.line(*divider)
         ball.reset()
         paddle.reset()
         sprites.draw(screen)
         pygame.display.flip()
+        paused = True # flag to indicate if the stage is paused or moving 
         
         # play the round
         while True:
         
             # Handle Input Events
             for event in pygame.event.get():
+            
+                # quit the game
                 if event.type == QUIT: return
                 elif event.type == KEYDOWN:
+                
+                    # quit the game
                     if event.key == K_ESCAPE: return
-                    elif event.key == K_r:
-                        ball.reset()
+                    
+                    # move the paddle
                     else: paddle.move(event.key)
+                    
                 elif event.type == KEYUP:
+                
+                    # reset the ball and paddle (dont reset stage)
+                    if event.key == K_r:
+                        ball.reset()
+                        paddle.reset()
+                        life.change_by(-1)
+                        if life.value < 0: return
+                        paused = True
+                        
+                    # pause the game
+                    elif event.key == K_p:
+                        ball.pause()
+                        paddle.pause()
+                        if paused: paused = False
+                        else: paused = True
+                        
+                    elif event.key == K_SPACE:
+                    
+                        # start the stage
+                        if paused:
+                            ball.pause()
+                            if paddle.paused: paddle.pause()
+                            paused = False
+                            
+                    # move the paddle
                     paddle.move(None)
+                    
                     
             # update the ball and see what action to take (restarting, scoring, etc)
             if ball.inbounds:
                 if (
-                    isinstance(ball.bouncedOff, Brick) and \
+                    isinstance(ball.bouncedOff, Brick) and
                     ball.bouncedOff.destroyed
                 ): 
                     score.change_by(ball.bouncedOff.points)
+                    
             else: # ball went out of bounds
                 life.change_by(LIFE_INCREMENT)
                 ball.reset()
+                paused = True
                 if life.value < 0: return
                 
             # check if the stage is complete and go to the next stage if so
-            if stage.completed: break
+            if stage.completed:
+                ball.bouncedOff = None
+                break
              
             # Draw Everything             
             sprites.update()

@@ -1,0 +1,21 @@
+name Bullseye!
+number 5
+lives 5
+#background mario_world.jpg
+
+
+brick 170 400 1 1 100 bullseye.png
+brick 170 400 1 0 0 obstacle_inner.png
+brick 170 400 1 1 40 green_ring.png
+brick 170 400 1 0 0 obstacle_outer.png
+brick 170 400 1 1 10 blue_ring.png
+
+brick 600 600 1 1 100 bullseye.png
+brick 600 600 1 0 0 obstacle_inner_2.png
+brick 600 600 1 1 40 green_ring.png
+brick 600 600 1 0 0 obstacle_outer_2.png
+brick 600 600 1 1 10 blue_ring.png
+
+brick 675 300 1 1 100 bullseye.png
+brick 675 300 1 1 40 green_ring.png
+brick 675 300 1 0 0 obstacle_outer_3.png

@@ -1,0 +1,20 @@
+name Die, Monkey!
+number 3
+lives 5
+background donkey_kong.png
+
+brick 386 393 1 0 0 ladders.png
+
+brick 65 188 1 1 10 barrel_up.png
+brick 96 188 1 1 10 barrel_up.png
+brick 65 239 1 1 10 barrel_up.png
+brick 96 239 1 1 10 barrel_up.png
+
+brick 296 337 1 1 10 barrel_side.png
+brick 156 456 1 1 10 barrel_side.png
+brick 395 545 1 1 10 barrel_top.png
+brick 519 551 1 1 10 barrel_top.png
+
+brick 170 213 100 20 200 dk.png
+brick 515 334 90 30 100 mario.png
+brick 400 140 90 30 100 peach.png

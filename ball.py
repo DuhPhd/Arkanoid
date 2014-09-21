@@ -27,14 +27,16 @@ class Ball(pygame.sprite.Sprite):
         self.bouncedOff = None # object that the ball last bounced off
         self.inbounds = True # flag to indicate if the ball is out-of-bounds
         self.mask = pygame.mask.from_surface(self.image)
+        self.paused = False # flag to indicate the ball is paused
     
     
     # ~~~~ update() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     def update(self):
         """Moves the ball, including bouncing."""
-        
-        self.rect = self.rect.move(self.speed)
-        return self.bounce()
+        if self.paused: return None
+        else:
+            self.rect = self.rect.move(self.speed)
+            return self.bounce()
         
         
     # ~~~~ bounce() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -81,12 +83,23 @@ class Ball(pygame.sprite.Sprite):
         Resets the ball's position and speed.
         """
         # set the initial direction and speed
-        self.speed = [0, -BALL_SPEED*self.speedFactor]
+        self.speed = [0, BALL_SPEED*self.speedFactor]
         self.speedExact = BALL_SPEED*self.speedFactor
+        self.paused = True
         
         # set the position back to the center
         self.rect.center = [
-            int(self.area.width*BALL_POS[0]), 
-            int(self.area.height*BALL_POS[1])
+            int(self.area.width*BALL_POS[0] + self.area.left), 
+            int(self.area.height*BALL_POS[1] + self.area.top)
         ]
         self.inbounds = True
+        
+        
+        
+    # ~~~~ pause() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #    
+    def pause(self):
+        """
+        Pauses the ball to keep it from moving or unpauses a paused ball.
+        """
+        if self.paused: self.paused = False
+        else: self.paused = True
