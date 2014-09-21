@@ -1,5 +1,6 @@
 from utilities import load_image, pygame
 from config import BRICK_SPRITE
+from math import atan2, sin, cos
 
 # ~~ Brick () ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 class Brick(pygame.sprite.Sprite):
@@ -38,6 +39,7 @@ class Brick(pygame.sprite.Sprite):
         self.damage = damage
         self.destroyed = False
         self.points = points
+        self.mask = pygame.mask.from_surface(self.image)
         
     
     # ~~~~ update() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -66,17 +68,30 @@ class Brick(pygame.sprite.Sprite):
         """
         
         if self.destroyed: return False
-        elif not self.rect.colliderect(ball.rect): return False
         else:
-        
-            self.life -= self.damage
-            self.update()
-        
-            # figure out which side of the brick the ball is bouncing off of
-            # to determine the bouncing effect on the ball
-            if ball.rect.centerx > self.rect.right: ball.speed[0] *= -1 # right side
-            elif ball.rect.centerx < self.rect.left: ball.speed[0] *= -1 # left side
-            if ball.rect.centery > self.rect.bottom: ball.speed[1] *= -1 # bottom
-            elif ball.rect.centery < self.rect.top: ball.speed[1] *= -1 # top
-
-            return True
+            
+            # get the collision direction of the brick and ball
+            offsetX = ball.rect.left - self.rect.left
+            offsetY = ball.rect.top - self.rect.top
+            leftOverlap = self.mask.overlap_area(ball.mask, (offsetX+1, offsetY))
+            rightOverlap = self.mask.overlap_area(ball.mask, (offsetX-1, offsetY))
+            bottomOverlap = self.mask.overlap_area(ball.mask, (offsetX, offsetY-1))
+            topOverlap = self.mask.overlap_area(ball.mask, (offsetX, offsetY+1))
+            dx = rightOverlap - leftOverlap
+            dy = bottomOverlap - topOverlap
+            
+            # change ball trajectory based on collision direction
+            if (dx <> 0) or (dy <> 0):
+                self.life -= self.damage
+                self.update()
+                
+                if dx == 0: ball.speed[1] = -ball.speed[1] 
+                elif dy == 0: ball.speed[0] = -ball.speed[0]
+                else:
+                    angle = atan2(dy, dx)
+                    ball.speed[0] = ball.speedExact * cos(angle)
+                    ball.speed[1] = ball.speedExact * sin(angle)
+                    
+                return True
+                
+            else: return False

@@ -87,13 +87,14 @@ class Stage:
         with open(configFile, 'r') as fh:
             for line in fh:
                 cnt += 1
-                line = line.strip().lower()
+                line = line.strip()
+                lowered = line.lower()
                 
                 # skip empty lines
                 if line == '': continue
                 
                 # skip commented lines
-                if line.startswith(STAGE_CONFIG_COMMENT): continue
+                if lowered.startswith(STAGE_CONFIG_COMMENT): continue
                 
                 # raise an error for lines with no useful information
                 sLine = line.split(STAGE_CONFIG_DELIM, 1)

@@ -26,6 +26,7 @@ class Ball(pygame.sprite.Sprite):
         self.surfaces = surfaces
         self.bouncedOff = None # object that the ball last bounced off
         self.inbounds = True # flag to indicate if the ball is out-of-bounds
+        self.mask = pygame.mask.from_surface(self.image)
     
     
     # ~~~~ update() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

@@ -12,39 +12,48 @@ IMAGE_DIR = r'images'
 SOUND_DIR = r'sounds'
 
 # default Counter parameters
-COUNTER_FONTSIZE = 72
-COUNTER_FONTCOLOR = WHITE
-COUNTER_FONTNAME = 'Arial'
+TEXT_FONTSIZE = 48
+TEXT_FONTCOLOR = WHITE
+TEXT_FONTNAME = 'Arial'
 
 # Score parameters
 SCORE_START = 0
 SCORE_COLOR = WHITE
 SCORE_INCREMENT = 1
-SCORE_POS = (0.1, 0.9)
+SCORE_POS = (0.1, 0.05)
 
 # Life parameters
 LIFE_START = 3
 LIFE_COLOR = WHITE
 LIFE_INCREMENT = -1
-LIFE_POS = (0.9, 0.9)
+LIFE_POS = (0.9, 0.05)
+
+# stage name parameters
+NAME_POS = (0.5, 0.05) # position of stage name as proportino of screen size
+NAME_COLOR = WHITE
+
+# divider for score, etc
+DIV_POS = 0.1 # position of divider for score etc as proportion of vertical screen size
+DIV_WIDTH = 4 # width of divider in number of pixels
+DIV_COLOR = WHITE
 
 # Paddle parameters
-USER_SPEED = 500 # speed in pixels per second, converted to pixels per frame
+USER_SPEED = 700 # speed in pixels per second, converted to pixels per frame
 USER_SPRITE = os.path.join(SOURCE_DIR, IMAGE_DIR, r'paddle.png')
 USER_BALL_MINANGLE = 30 # minimum angle (in degrees) ball bounces off paddle when on the very ede of the paddle
 USER_BALL_MAXANGLE = 90 # maximum angle (in degrees) ball bounces off paddle when in the center of the paddle
 
 # Ball parameters
-BALL_SPEED = 500 # speed in pixels per second, converted to pixels per frame
-BALL_SPRITE = os.path.join(SOURCE_DIR, IMAGE_DIR, r'ball.gif')
+BALL_SPEED = 700 # speed in pixels per second, converted to pixels per frame
+BALL_SPRITE = os.path.join(SOURCE_DIR, IMAGE_DIR, r'ball.png')
 BALL_SOUND = os.path.join(SOURCE_DIR, SOUND_DIR, r'ball_hit.wav')
 BALL_POS = (0.5, 0.9) # starting position of ball in proportion of screen/frame
 
 # default Brick parameters
-BRICK_SPRITE = os.path.join(SOURCE_DIR, IMAGE_DIR, r'brick.png')
+BRICK_SPRITE = os.path.join(SOURCE_DIR, IMAGE_DIR, r'brick.gif')
 
 # default Stage parameters
-STAGE_BG = (49, 79, 79) # default is always a color tuple
+STAGE_BG = BLACK # default is always a color tuple
 STAGE_NAME = 'stage' # default name
 STAGE_NUM = 1 # default order number
 STAGE_DIR = r'stages' # folder that stages can be found in relative to SOURCE_DIR

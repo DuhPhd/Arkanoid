@@ -15,7 +15,7 @@ def load_image(filepath):
     Pygame documentation: http://www.pygame.org/docs/tut/chimp/ChimpLineByLine.html
     """
     image = pygame.image.load(filepath)
-    image = image.convert()
+    image = image.convert_alpha()
     return image, image.get_rect()
 
     

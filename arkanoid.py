@@ -13,6 +13,7 @@ def main():
         KEYUP, 
         K_ESCAPE, 
         QUIT,
+        K_r,
         load_stages
     )
     from config import (
@@ -25,10 +26,15 @@ def main():
         LIFE_START,
         LIFE_COLOR,
         LIFE_INCREMENT,
-        LIFE_POS
+        LIFE_POS,
+        DIV_POS,
+        DIV_COLOR,
+        DIV_WIDTH,
+        NAME_COLOR,
+        NAME_POS
     )
         
-    from counter import Score, Life
+    from text import Score, Life, Name
     from paddle import Paddle
     from ball import Ball
     from brick import Brick
@@ -38,15 +44,19 @@ def main():
     clock = pygame.time.Clock()
 
     # set the window size
+    divTop = int(DIV_POS*SIZE[1]) # top of divider. Affects bounds for ball
+    divBot = divTop + DIV_WIDTH
     screen = pygame.display.set_mode(SIZE)
-    area = pygame.display.get_surface().get_rect()
+    area = pygame.Rect(0, divBot, SIZE[0], SIZE[1]-divBot)
     
     # create game screen objects/sprites
     score = Score(SCORE_POS, screen, SCORE_START, SCORE_COLOR)
     life = Life(LIFE_POS, screen, LIFE_START, LIFE_COLOR)
+    name = Name(NAME_POS, screen, '', NAME_COLOR)
     paddle = Paddle(area)
     ball = Ball(area)
     stages = load_stages(screen)
+    divider = (screen, DIV_COLOR, [0, divTop], [SIZE[0], divTop], DIV_WIDTH)
     sprites = pygame.sprite.RenderPlain((paddle, ball))
     
     for stage in stages:
@@ -56,8 +66,12 @@ def main():
         ball.surfaces.add(paddle)
         ball.surfaces.update(stage.bricks)
         
+        # update the stage name
+        name.value = '%i: %s' % (stage.number, stage.name)
+        
         # draw the stage to prepare the round
         stage.draw()
+        pygame.draw.line(*divider)
         ball.reset()
         paddle.reset()
         sprites.draw(screen)
@@ -71,7 +85,9 @@ def main():
                 if event.type == QUIT: return
                 elif event.type == KEYDOWN:
                     if event.key == K_ESCAPE: return
-                    paddle.move(event.key)
+                    elif event.key == K_r:
+                        ball.reset()
+                    else: paddle.move(event.key)
                 elif event.type == KEYUP:
                     paddle.move(None)
                     
@@ -85,7 +101,7 @@ def main():
             else: # ball went out of bounds
                 life.change_by(LIFE_INCREMENT)
                 ball.reset()
-                if life.count < 0: return
+                if life.value < 0: return
                 
             # check if the stage is complete and go to the next stage if so
             if stage.completed: break
@@ -94,6 +110,8 @@ def main():
             sprites.update()
             stage.update()
             stage.draw()
+            pygame.draw.line(*divider)
+            name.render()
             life.render()
             score.render()
             sprites.draw(screen)

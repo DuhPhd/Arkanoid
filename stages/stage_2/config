@@ -1,37 +1,38 @@
-name death lazer
-number 2
-brick 100 500 3 1 1 brick_1.png
-brick 200 500 3 1 1 brick_1.png
-brick 300 500 3 1 1 brick_1.png
-brick 400 500 3 1 1 brick_1.png
-brick 500 500 3 1 1 brick_1.png
-brick 600 500 3 1 1 brick_1.png
-brick 700 500 3 1 1 brick_1.png
-brick 800 500 3 1 1 brick_1.png
+name Obstacles!
+number 0
+background dark-wood.png
 
-brick 100 400 3 1 1 brick_2.png
-brick 200 400 3 1 1 brick_2.png
-brick 300 400 3 1 1 brick_2.png
-brick 400 400 3 1 1 brick_2.png
-brick 500 400 3 1 1 brick_2.png
-brick 600 400 3 1 1 brick_2.png
-brick 700 400 3 1 1 brick_2.png
-brick 800 400 3 1 1 brick_2.png
+brick 170 500 1 0 0 obstacle.png
+brick 630 500 1 0 0 obstacle.png
 
-brick 100 300 3 1 1 brick_3.png
-brick 200 300 3 1 1 brick_3.png
-brick 300 300 3 1 1 brick_3.png
-brick 400 300 3 1 1 brick_3.png
-brick 500 300 3 1 1 brick_3.png
-brick 600 300 3 1 1 brick_3.png
-brick 700 300 3 1 1 brick_3.png
-brick 800 300 3 1 1 brick_3.png
+brick 100 400 1 1 2 brick.gif
+brick 200 400 1 1 2 brick.gif
+brick 300 400 1 1 2 brick.gif
+brick 400 400 1 1 2 brick.gif
+brick 500 400 1 1 2 brick.gif
+brick 600 400 1 1 2 brick.gif
+brick 700 400 1 1 2 brick.gif
 
-brick 100 200 3 1 1 brick_4.png
-brick 200 200 3 1 1 brick_4.png
-brick 300 200 3 1 1 brick_4.png
-brick 400 200 3 1 1 brick_4.png
-brick 500 200 3 1 1 brick_4.png
-brick 600 200 3 1 1 brick_4.png
-brick 700 200 3 1 1 brick_4.png
-brick 800 200 3 1 1 brick_4.png
+brick 100 350 1 1 2 brick.gif
+brick 200 350 1 1 2 brick.gif
+brick 300 350 1 1 2 brick.gif
+brick 400 350 1 1 2 brick.gif
+brick 500 350 1 1 2 brick.gif
+brick 600 350 1 1 2 brick.gif
+brick 700 350 1 1 2 brick.gif
+
+brick 100 300 1 1 2 brick.gif
+brick 200 300 1 1 2 brick.gif
+brick 300 300 1 1 2 brick.gif
+brick 400 300 1 1 2 brick.gif
+brick 500 300 1 1 2 brick.gif
+brick 600 300 1 1 2 brick.gif
+brick 700 300 1 1 2 brick.gif
+
+brick 100 250 1 1 2 brick.gif
+brick 200 250 1 1 2 brick.gif
+brick 300 250 1 1 2 brick.gif
+brick 400 250 1 1 2 brick.gif
+brick 500 250 1 1 2 brick.gif
+brick 600 250 1 1 2 brick.gif
+brick 700 250 1 1 2 brick.gif
