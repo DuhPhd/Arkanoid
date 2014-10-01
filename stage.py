@@ -144,7 +144,12 @@ class Stage:
                     offsetY = brick2.rect.top - brick1.rect.top
                     overlap = brick1.mask.overlap_area(brick2.mask, (offsetX, offsetY))
                     if overlap:
-                        raise ValueError('Bricks may not overlap.')
+                        errMsg = ' '.join([
+                            'Bricks may not overlap. Bricks at',
+                            '(%i, %i)' % (brick1.rect.centerx, brick1.rect.centery),
+                            'and (%i, %i).' % (brick2.rect.centerx, brick2.rect.centery)
+                        ])
+                        raise ValueError(errMsg)
                     
         
         

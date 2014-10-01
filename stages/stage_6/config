@@ -1,0 +1,32 @@
+name YaRgNaRk's Cartoon Heaven
+number 6
+lives 3
+background Rainbow Background.png
+
+brick 50 145 1 1 10 Powerpuff 1.png
+brick 311 200 1 1 10 Powerpuff 2.png
+brick 611 181 1 1 10 Powerpuff 3.png
+brick 175 354 1 1 10 Bart.png
+brick 481 403 1 1 10 Mighty Mouse.png
+brick 716 333 1 1 10 Space Ghost.png
+brick 81 643 1 1 10 Brak.png
+brick 298 623 1 1 10 Cow.png
+brick 417 649 1 1 10 Garfield.png
+brick 517 643 1 1 10 Chicken.png
+brick 692 662 1 1 10 Johnny Bravo.png
+
+brick 133 164 1 0 0 Star.png
+brick 62 246 1 0 0 Star.png
+brick 547 192 1 0 0 Star.png
+brick 586 286 1 0 0 Star.png
+brick 310 290 1 0 0 Star.png
+brick 38 484 1 0 0 Star.png
+brick 247 500 1 0 0 Star.png
+brick 452 467 1 0 0 Star.png
+brick 752 436 1 0 0 Star.png
+
+brick 86 712 1 0 0 Skateboard 1.png
+brick 705 734 1 0 0 Skateboard 2.png
+
+brick 294 692 1 0 0 Flowers 1.png
+brick 521 697 1 0 0 Flowers 2.png
