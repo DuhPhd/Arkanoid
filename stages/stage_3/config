@@ -1,6 +1,6 @@
 name Die, Monkey!
 number 3
-lives 5
+time 120
 background donkey_kong.png
 
 brick 386 393 1 0 0 ladders.png

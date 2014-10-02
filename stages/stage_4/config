@@ -1,6 +1,6 @@
 name A Plumber's Dream
 number 4
-lives 3
+time 120
 background mario_world.jpg
 
 brick 273 380 1 0 0 boxes.png

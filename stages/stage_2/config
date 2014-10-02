@@ -1,6 +1,6 @@
 name Obstacles!
 number 2
-lives 5
+time 120
 background dark-wood.png
 
 brick 170 500 1 0 0 obstacle.png

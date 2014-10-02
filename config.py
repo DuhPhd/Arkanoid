@@ -20,13 +20,23 @@ TEXT_FONTNAME = 'Arial'
 SCORE_START = 0
 SCORE_COLOR = WHITE
 SCORE_INCREMENT = 1
-SCORE_POS = (0.1, 0.05)
+SCORE_POS = (0.1, 0.07)
+SCORE_SIZE = 36
+S_LABEL_TEXT = 'Score'
+S_LABEL_POS = (0.1, 0.02)
+S_LABEL_SIZE = 20
+S_LABEL_COLOR = WHITE
 
-# Life parameters
-LIFE_START = 0 # leave at 0 unless stages offer no additional lives
-LIFE_COLOR = WHITE
-LIFE_INCREMENT = -1
-LIFE_POS = (0.9, 0.05)
+# Time parameters
+TIMER_START = 0 # Leave at 0 unless stages offer no time 
+TIMER_COLOR = WHITE
+TIMER_SPEED = -1 # number of deductions per second
+TIMER_POS = (0.9, 0.07)
+TIMER_SIZE = 36
+T_LABEL_TEXT = 'Time'
+T_LABEL_POS = (0.9, 0.02)
+T_LABEL_SIZE = 20
+T_LABEL_COLOR = WHITE
 
 # stage name parameters
 NAME_POS = (0.5, 0.05) # position of stage name as proportino of screen size
@@ -56,7 +66,7 @@ BRICK_SPRITE = os.path.join(SOURCE_DIR, IMAGE_DIR, r'brick.gif')
 STAGE_BG = BLACK # default is always a color tuple
 STAGE_NAME = 'stage' # default name
 STAGE_NUM = 1 # default order number
-STAGE_LIVES = 1 # default number of lives given for the stage
+STAGE_TIME = 120 # default time for the stage
 STAGE_DIR = r'stages' # folder that stages can be found in relative to SOURCE_DIR
 STAGE_FILE = r'config' # name of stage configuration file including extension inside STAGE_DIR
 STAGE_CONFIG_DELIM = ' ' # delimiter for stage config file
@@ -65,4 +75,4 @@ STAGE_CONFIG_NAME = 'name' # stage name config keyword
 STAGE_CONFIG_NUM = 'number' # stage number config keyword
 STAGE_CONFIG_BG = 'background' # stage background config keyword
 STAGE_CONFIG_BRICK = 'brick' # stage brick config keyword
-STAGE_CONFIG_LIFE = 'lives' # number of lives for the stage (added to player's current)
+STAGE_CONFIG_TIME = 'time' # time to complete stage

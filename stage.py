@@ -9,8 +9,8 @@ from config import (
     STAGE_CONFIG_NUM,
     STAGE_CONFIG_BG,
     STAGE_CONFIG_BRICK,
-    STAGE_CONFIG_LIFE,
-    STAGE_LIVES,
+    STAGE_CONFIG_TIME,
+    STAGE_TIME,
     SIZE
 )
 from brick import Brick
@@ -42,7 +42,7 @@ class Stage:
         self.image.fill(STAGE_BG)
         self.rect = self.screen.get_rect()
         self.bricks = pygame.sprite.RenderPlain()
-        self.lives = STAGE_LIVES
+        self.time = STAGE_TIME
         self.completed = False # has stage completed?
         self.nObstacles = 0 # keeps track of number of obstacles for faster completion check
         
@@ -66,7 +66,7 @@ class Stage:
                 
                 name: (string) name of the stage. Not currently used; required
                 number: (int) order of the stage, with lower numbers first; required
-                lives: (int) number of lives expected to complete the stage; optional
+                time: (int) amount of time expected to complete the stage; optional
                 background: (str) path to the background image; optional
                 brick: (at least one required)
                     [1] (int, int) (row, col) top-left brick centroid position in frame; required
@@ -79,6 +79,7 @@ class Stage:
                     
                     name death lazer
                     number 1
+                    time 120
                     background bg.png # inside the stage folder
                     brick 100 100 3 2 1 3brick.png
                     brick 200 100 1 1
@@ -112,7 +113,7 @@ class Stage:
                 try:
                     if key == STAGE_CONFIG_NAME: self.name = line
                     elif key == STAGE_CONFIG_NUM: self.number = int(line)
-                    elif key == STAGE_CONFIG_LIFE: self.lives = int(line)
+                    elif key == STAGE_CONFIG_TIME: self.time = int(line)
                     elif key == STAGE_CONFIG_BG: 
                         imagePath = os.path.join(configdir, line)
                         self.image, self.rect = load_image(imagePath)

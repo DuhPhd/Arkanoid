@@ -15,7 +15,9 @@ class Text:
         position    = (top, left) position of center of text on game frame in
             proportion of the frame size, e.g. (0.1, 0.1)
             
-        background  = background object on which the counter is being rendered
+        screen      = background object on which the counter is being rendered
+        
+        value       = (optional) starting value (can be anything)
         
         color       = (optional) (r, g, b) color of font. Default is white.
         
@@ -64,18 +66,9 @@ class Text:
 class Counter(Text):
     """Generic counter to display on screen.
     
-    INPUTS:
-        
-        position    = (top, left) position of center of text on game frame in
-            proportion of the frame size, e.g. (0.1, 0.1)
-            
-        background  = background object on which the counter is being rendered
-        
-        color       = (optional) (r, g, b) color of font. Default is white.
-        
-        fontsize    = (optional) size of counter font. Default is 72 pixels
-        
-        fontname    = (optional) font name to use for text. Default is Arial
+    INPUTS: parameters are same as text, except for
+    
+        value   = starting value. Must be a number.
         
     OUTPUTS: Counter object. See methods for more details.
     """
@@ -86,6 +79,28 @@ class Counter(Text):
         assert amount % 1 == 0, 'Change amount must be an integer.'
         self.value += amount
         
+        
+class Rounded(Counter):
+    """
+    Similar to Counter, but allows partial changes in value but only displays
+    rounded integer value.
+    
+    INPUTS: parameters are same as Counter
+        
+    OUTPUTS: Rounded object. See methods for more details.
+    """
+    
+    def __init__(self, *args, **kwargs):
+        Counter.__init__(self, *args, **kwargs)
+        self.exact = self.value
+        self.value = int(round(self.exact))
+
+    # ~~~~ change_by ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+    def change_by(self, amount=1):
+        """Change the counter by the specified value (or default of 1)."""
+        self.exact += amount
+        self.value = int(round(self.exact))
+        
 class Score(Counter): pass
-class Life(Counter): pass
+class Timer(Rounded): pass
 class Name(Text): pass
