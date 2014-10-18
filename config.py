@@ -30,7 +30,7 @@ S_LABEL_COLOR = WHITE
 # Time parameters
 TIMER_START = 0 # Leave at 0 unless stages offer no time 
 TIMER_COLOR = WHITE
-TIMER_SPEED = -1 # number of deductions per second
+TIMER_SPEED = -1000 # number of deductions per second
 TIMER_POS = (0.9, 0.07)
 TIMER_SIZE = 36
 T_LABEL_TEXT = 'Time'
@@ -76,3 +76,28 @@ STAGE_CONFIG_NUM = 'number' # stage number config keyword
 STAGE_CONFIG_BG = 'background' # stage background config keyword
 STAGE_CONFIG_BRICK = 'brick' # stage brick config keyword
 STAGE_CONFIG_TIME = 'time' # time to complete stage
+
+# Start menu parameters
+START_BG = BLACK # default is always a color tuple
+START_TITLE = 'Arkanoid (kinda)'
+START_START_TEXT = 'Start'
+START_QUIT_TEXT = 'Quit'
+
+# Lose menu parameters
+DIE_BG = BLACK # default is always a color tuple
+DIE_TITLE = 'You Lose'
+DIE_RESTART_TEXT = 'Restart'
+DIE_QUIT_TEXT = 'Quit'
+
+# Win menu parameters
+WIN_BG = BLACK # default is always a color tuple
+WIN_TITLE = 'You Win!'
+
+# default Button parameters
+BUTTON_FONTSIZE = 72
+BUTTON_FONTCOLOR = WHITE
+BUTTON_HIGHLIGHTED_FONTCOLOR = (255, 255, 0)
+BUTTON_FONTNAME = 'Arial'
+BUTTON_ANGLE_MAX = 5 # maximum rotation angle in degrees when highlighted
+BUTTON_SCALE = 1.2 # scaling of button text when highlighted
+BUTTON_SPEED = 0.3 # speed button wobbles when highlighted

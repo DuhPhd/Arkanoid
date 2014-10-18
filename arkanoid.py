@@ -1,5 +1,7 @@
 class Constants:
-    from utilities import (KEYDOWN, KEYUP, K_ESCAPE, K_SPACE, QUIT, K_r, K_p)
+    from utilities import (
+        KEYDOWN, KEYUP, K_ESCAPE, K_SPACE, QUIT, K_r, K_p, K_RETURN, K_UP, K_DOWN
+    )
     from config import (
         SIZE, FRAMES_PER_SECOND, SCORE_START, SCORE_COLOR, SCORE_INCREMENT,
         SCORE_POS, TIMER_START, TIMER_SPEED, TIMER_COLOR, TIMER_POS, DIV_POS,
@@ -184,24 +186,49 @@ class Arkanoid:
 def main():
     """Creates and executes Arkanoid."""
     
+    from menu import StartMenu, DieMenu, WinMenu
+    
     arkanoid = Arkanoid()
     
-    ## start with the start screen
+    # play the start menu
+    start = StartMenu(arkanoid.screen)
+    menuResult = start.play(arkanoid)
+    if menuResult == 0: pass # play
+    elif menuResult == 2: return # quit
     
     # play through the stages
-    for stage in arkanoid.stages:
-        stageResult = arkanoid.play_stage(stage)
-        if stageResult == 0: continue # won!
-        elif stageResult == 1: break # lost
-        elif stageResult == 2: return # quit
-        else: raise ValueError('Unrecognized stage return code.')
-        
-    # if player failed, display failure page. Otherwise, play congrats for
-    # completing the game
-    if stageResult == 0: pass ##CONGRATS!
+    stageNum = 0
+    while True:
     
-    else: pass ##FAIL
-        
+        # play the stage
+        stage = arkanoid.stages[stageNum]
+        stageResult = arkanoid.play_stage(stage)
 
+        # stage was one, proceed to next
+        if stageResult == 0:
+            stageNum += 1
+            
+            # game has been won!
+            if stageNum == len(arkanoid.stages):
+                win = WinMenu(arkanoid.screen)
+                menuResult = win.play(arkanoid)
+                if menuResult == 0: 
+                    stageNum = 0
+                    arkanoid = Arkanoid()
+                elif menuResult == 2: return
+        
+        # stage was lost, decide if restarting or quitting
+        elif stageResult == 1: #lost
+            dead = DieMenu(arkanoid.screen)
+            menuResult = dead.play(arkanoid)
+            if menuResult == 0: # restart
+                stageNum = 0
+                arkanoid = Arkanoid()
+            elif menuResult == 2: return # quit
+            
+        # user quit game
+        elif stageResult == 2: return # quit
+        
+        else: raise ValueError('Unrecognized stage return code.')
     
 if __name__ == '__main__': main()
