@@ -128,6 +128,7 @@ class Arkanoid:
         self.ball.surfaces = set()
         self.ball.surfaces.add(self.paddle)
         self.ball.surfaces.update(stage.bricks)
+        self.ball.surfaces.update(stage.powerups)
         
         # update the stage name
         self.name.value = '%i: %s' % (stage.number, stage.name)

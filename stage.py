@@ -11,9 +11,12 @@ from config import (
     STAGE_CONFIG_BRICK,
     STAGE_CONFIG_TIME,
     STAGE_TIME,
+    STAGE_CONFIG_POWER,
+    STAGE_CONFIG_PWBSP,
     SIZE
 )
 from brick import Brick
+from powerup import BallSpeedup
 
 class Stage:
     """
@@ -42,6 +45,7 @@ class Stage:
         self.image.fill(STAGE_BG)
         self.rect = self.screen.get_rect()
         self.bricks = pygame.sprite.RenderPlain()
+        self.powerups = pygame.sprite.RenderPlain()
         self.time = STAGE_TIME
         self.completed = False # has stage completed?
         self.nObstacles = 0 # keeps track of number of obstacles for faster completion check
@@ -74,6 +78,9 @@ class Stage:
                     [3] (int) damage done to brick by ball; make 0 for obstacles; optional
                     [4] (int) number of points awarded when brick is destroyed; optional
                     [5] (str) path to the brick sprite file; optional
+                power: (optional)
+                    [1] (int, int) (row, col) top-left powerup centroid position in frame; required
+                    [2] (str) powerup type; required; options are: {ball_speed, }
                 
                 An example:
                     
@@ -84,6 +91,7 @@ class Stage:
                     brick 100 100 3 2 1 3brick.png
                     brick 200 100 1 1
                     brick 300 200 1 0 1 obstacle.png
+                    power 400 400 ball_speed
                     
         OUTPUTS: Updates the Stage object with the objects needed for the stage.
         """
@@ -117,6 +125,8 @@ class Stage:
                     elif key == STAGE_CONFIG_BG: 
                         imagePath = os.path.join(configdir, line)
                         self.image, self.rect = load_image(imagePath)
+                        
+                    # load bricks
                     elif key == STAGE_CONFIG_BRICK:
                         sLine = line.split(STAGE_CONFIG_DELIM, 5)
                         optArgs = {}
@@ -132,6 +142,17 @@ class Stage:
                         )
                         self.bricks.add(brick)
                         if brick.damage == 0: self.nObstacles += 1
+                        
+                    # load powerups
+                    elif key == STAGE_CONFIG_POWER:
+                        sLine = line.split(STAGE_CONFIG_DELIM)
+                        powerType = sLine[2]
+                        if powerType == STAGE_CONFIG_PWBSP:
+                            powerup = BallSpeedup((int(sLine[0]), int(sLine[1])))
+                        else:
+                            raise ValueError('Invalid powerup type %s' % powerType)
+                        self.powerups.add(powerup)
+                    
                     
                 except ValueError as e:
                     print e.message
@@ -160,14 +181,18 @@ class Stage:
         Updates stage attributes including redrawing images and checking
         to see if the stage is finished.
         """
+        self.powerups.update()
         self.draw()
         self.check_completion()
         
 
     # ~~~~ draw() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     def draw(self):
-        """Draws the background of the stage and any remaining bricks."""
+        """
+        Draws the background of the stage and any remaining bricks and powerups.
+        """
         self.screen.blit(self.image, (0, 0))
+        [powerup.draw(self.screen) for powerup in self.powerups]
         self.bricks.draw(self.screen)
         
         

@@ -10,8 +10,6 @@ class Brick(pygame.sprite.Sprite):
     bricks.
     
     INPUTS:
-        screen  = screen on which the brick is rendered
-        
         pos     = position of the center of the Brick. Note it shouldnt touch
             other bricks
         

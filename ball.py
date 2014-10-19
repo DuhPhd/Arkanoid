@@ -6,6 +6,7 @@ from config import (
     BALL_POS
 )
 from utilities import pygame, load_sound, load_image
+from powerup import Powerup
 
 
 # ~~ BALL() ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -21,9 +22,9 @@ class Ball(pygame.sprite.Sprite):
         self.speedFactor = 1. / FRAMES_PER_SECOND
         self.speed = [0, 0]
         self.speedExact = 0 # speed the ball should be going in pixels/frame
+        self.surfaces = surfaces
         self.reset()
         self.ballHitSound = load_sound(BALL_SOUND)
-        self.surfaces = surfaces
         self.bouncedOff = None # object that the ball last bounced off
         self.inbounds = True # flag to indicate if the ball is out-of-bounds
         self.mask = pygame.mask.from_surface(self.image)
@@ -47,7 +48,7 @@ class Ball(pygame.sprite.Sprite):
         
         # first check if the ball out of bounds
         bounced = False
-        if self.rect.bottom > self.area.bottom: 
+        if self.rect.top > self.area.bottom: 
             self.inbounds = False
             return
             
@@ -93,6 +94,13 @@ class Ball(pygame.sprite.Sprite):
             int(self.area.height*BALL_POS[1] + self.area.top)
         ]
         self.inbounds = True
+        
+        # remove any powerups
+        toRemove = set()
+        for surface in self.surfaces:
+            if isinstance(surface, Powerup) and surface.activated:
+                toRemove.add(surface)
+        for surface in toRemove: surface.destroy(True)
         
         
         

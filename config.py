@@ -30,7 +30,7 @@ S_LABEL_COLOR = WHITE
 # Time parameters
 TIMER_START = 0 # Leave at 0 unless stages offer no time 
 TIMER_COLOR = WHITE
-TIMER_SPEED = -1000 # number of deductions per second
+TIMER_SPEED = -1 # number of deductions per second
 TIMER_POS = (0.9, 0.07)
 TIMER_SIZE = 36
 T_LABEL_TEXT = 'Time'
@@ -76,6 +76,8 @@ STAGE_CONFIG_NUM = 'number' # stage number config keyword
 STAGE_CONFIG_BG = 'background' # stage background config keyword
 STAGE_CONFIG_BRICK = 'brick' # stage brick config keyword
 STAGE_CONFIG_TIME = 'time' # time to complete stage
+STAGE_CONFIG_POWER = 'power' # stage power config keyword
+STAGE_CONFIG_PWBSP = 'ball_speed' # stage ball speedup powerup
 
 # Start menu parameters
 START_BG = BLACK # default is always a color tuple
@@ -101,3 +103,10 @@ BUTTON_FONTNAME = 'Arial'
 BUTTON_ANGLE_MAX = 5 # maximum rotation angle in degrees when highlighted
 BUTTON_SCALE = 1.2 # scaling of button text when highlighted
 BUTTON_SPEED = 0.3 # speed button wobbles when highlighted
+
+# default Powerup parameters
+PU_TIME = 10 # powerup time limit
+PU_IMAGE = 'powerup.png' # powerup image
+PU_BALL_SP_IMAGE = 'ball_speed.png' # ball speedup powerup image
+PU_BALL_SP_SPEED = 1.5 # speed increase factor for the ball speedup powerup
+PU_BALL_SP_TIME = 10 # number of seconds the ball speedup powerup lasts
